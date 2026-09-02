@@ -1,0 +1,5 @@
+{
+  "_comment": "Copy this file to .clasp.json and replace scriptId with your own. .clasp.json is gitignored because a scriptId identifies your private Apps Script project.",
+  "scriptId": "YOUR_SCRIPT_ID_HERE",
+  "rootDir": "."
+}

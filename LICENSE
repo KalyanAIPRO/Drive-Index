@@ -1,0 +1,95 @@
+Drive Index
+Proprietary Software Licence — All Rights Reserved
+
+Copyright (c) 2026 Kalyan Vamsi Modepalli. All rights reserved.
+
+------------------------------------------------------------------------
+1. OWNERSHIP
+------------------------------------------------------------------------
+This software, including its source code, configuration design,
+documentation and all associated materials (the "Software"), is the
+exclusive property of Kalyan Vamsi Modepalli (the "Licensor"). The
+Software is protected by copyright law and international treaties.
+
+The Software is licensed, not sold. No title or ownership is
+transferred by this licence or by any act of distribution.
+
+------------------------------------------------------------------------
+2. NO LICENCE GRANTED BY DEFAULT
+------------------------------------------------------------------------
+No rights of any kind are granted to any person or entity except under
+a separate written agreement signed by the Licensor.
+
+Without such an agreement, you may NOT:
+
+  (a) use, run, execute or deploy the Software;
+  (b) copy, reproduce or store the Software;
+  (c) modify, adapt, translate or create derivative works;
+  (d) distribute, publish, sublicense, sell, rent, lease or lend the
+      Software or access to it;
+  (e) incorporate the Software, in whole or in part, into any product,
+      service, template, add-on or offering, whether paid or free;
+  (f) offer the Software as a hosted or managed service;
+  (g) remove, obscure or alter any copyright, licence or attribution
+      notice contained in the Software.
+
+Receiving, viewing or cloning a copy of the Software — including via a
+repository to which you have been granted access — does not grant any
+of the rights above.
+
+------------------------------------------------------------------------
+3. COMMERCIAL AND OTHER LICENCES
+------------------------------------------------------------------------
+The Licensor grants paid commercial licences, evaluation licences and
+custom or white-label licences on request. Terms, tiers and contact
+details are set out in COMMERCIAL-LICENSE.md.
+
+The Licensor reserves the unrestricted right to license, sell,
+distribute, sublicense and commercially exploit the Software on any
+terms, and to release it under different licences to different parties.
+
+------------------------------------------------------------------------
+4. FEEDBACK AND CONTRIBUTIONS
+------------------------------------------------------------------------
+Any suggestion, bug report, patch or contribution submitted to the
+Licensor regarding the Software is provided on a non-confidential
+basis, and the Licensor may use and commercialise it without
+restriction, attribution or compensation.
+
+------------------------------------------------------------------------
+5. NO WARRANTY
+------------------------------------------------------------------------
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY AND
+NON-INFRINGEMENT.
+
+The Software reads and lists metadata about files in a user's own
+Google Drive. The user remains solely responsible for the lawfulness of
+that access, for the confidentiality of any resulting index, and for
+compliance with all policies applicable to the data concerned.
+
+------------------------------------------------------------------------
+6. LIMITATION OF LIABILITY
+------------------------------------------------------------------------
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE LICENSOR SHALL NOT BE
+LIABLE FOR ANY CLAIM, DAMAGE, LOSS OF DATA, LOSS OF PROFIT, BUSINESS
+INTERRUPTION OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR
+OTHERWISE, ARISING FROM OR IN CONNECTION WITH THE SOFTWARE OR ITS USE.
+
+------------------------------------------------------------------------
+7. TERMINATION
+------------------------------------------------------------------------
+Any use of the Software outside a written licence from the Licensor is
+unauthorised and terminates immediately on notice. On termination you
+must cease all use and destroy all copies in your possession.
+
+------------------------------------------------------------------------
+8. GOVERNING LAW
+------------------------------------------------------------------------
+This licence is governed by the laws of India, with exclusive
+jurisdiction in the courts of Bengaluru, Karnataka.
+
+------------------------------------------------------------------------
+Contact for licensing: see COMMERCIAL-LICENSE.md
+------------------------------------------------------------------------

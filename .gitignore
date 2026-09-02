@@ -1,0 +1,31 @@
+# ── Never commit these ────────────────────────────────────────
+# .clasp.json carries YOUR scriptId, which identifies a private
+# Apps Script project. Commit .clasp.json.example instead.
+.clasp.json
+
+# clasp / Google credentials
+.clasprc.json
+*.credentials.json
+client_secret*.json
+token.json
+
+# Real spreadsheets, exports and folder listings — these contain
+# actual file names and Drive IDs. Keep them out of the repo.
+*.xlsx
+*.xls
+*.csv
+*.tsv
+/samples/real/
+/private/
+
+# Editors & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node (if tooling is added later)
+node_modules/
+npm-debug.log*
+package-lock.json
