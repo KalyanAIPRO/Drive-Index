@@ -4,6 +4,34 @@ All notable changes to Drive Index. Format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versioning follows [Semantic Versioning](https://semver.org/).
 
+## [1.0.1] — 2026-09-02
+
+### Fixed
+- **`Sort By = Size` sorted by Last Modified instead of size.** The comparator
+  read row index `5` (the last-modified date) rather than `6` (size in KB).
+  Because JavaScript coerces `Date` subtraction to a number, it produced a
+  plausible-looking but wrong order with no error.
+- **`Sort By = Last Modified` did not sort at all.** The comparator read row
+  index `4` (the folder-path string) and passed it to `new Date()`, yielding
+  `NaN` for every comparison. The rows silently stayed in Drive's own traversal
+  order.
+
+Both were off-by-one against the row shape built in `collectFiles()`
+(`0=#  1=Name  2=Type  3=Link  4=Folder Path  5=Last Modified  6=Size`). Two of
+the four advertised sort modes were therefore broken. Column indices are now
+commented at the sort site.
+
+### Added
+- `test/harness.js` — a local behavioural harness. Apps Script cannot run
+  offline, so it stubs `DriveApp`/`SpreadsheetApp`, loads the real `Code.gs`, and
+  exercises it against a synthetic folder tree: 22 assertions covering guard
+  clauses, recursion and breadcrumbs, all four sort modes, renumbering, MIME
+  type derivation, idempotency and formula shape. It also pins the four known
+  defects so a future fix flips observed behaviour rather than changing it
+  silently. Run with `node test/harness.js`.
+
+---
+
 ## [1.0.0] — 2026-09-02
 
 First released version.

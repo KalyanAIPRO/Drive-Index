@@ -140,9 +140,32 @@ Documented honestly rather than discovered by a user.
 | 5 | **Shortcuts are indexed as shortcuts**, not resolved to their targets | Duplicate-looking or misleading rows | Resolve via the Advanced Drive Service |
 | 6 | A `"` in the Link Button Label breaks the formula | Row shows a formula parse error | Escape the label |
 | 7 | Permissions are not reported | The index shows what exists, not who can see it | Add a sharing-status column |
+| 8 | `.docx` and a native Google Doc both render as `DOCUMENT` | The two are indistinguishable in the Type column | Map MIME types explicitly |
 
 Item 1 is the one that matters commercially — fix it before selling this to anyone with
 a large Drive. Ask and I'll batch it.
+
+---
+
+## Tests
+
+Apps Script cannot be executed locally, so `test/harness.js` stubs `DriveApp` and
+`SpreadsheetApp`, loads the real `Code.gs`, and runs it against a synthetic folder tree.
+
+```bash
+node test/harness.js
+```
+
+22 assertions: guard clauses (blank / placeholder / invalid folder ID, missing Config),
+recursion on and off, breadcrumb paths, all four sort modes with renumbering, MIME type
+derivation, idempotency across two runs, and `HYPERLINK` formula shape.
+
+The harness also **pins the known defects** — it prints their observed behaviour, including
+a measured API-call count that shows writes scaling linearly at ~2 calls per file. A future
+fix flips those numbers visibly instead of changing behaviour in silence.
+
+This harness caught the two sort bugs fixed in `1.0.1` — `Size` was sorting by date and
+`Last Modified` was not sorting at all. See [`CHANGELOG.md`](CHANGELOG.md).
 
 ---
 

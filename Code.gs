@@ -70,8 +70,10 @@ function indexDriveFolder() {
   // Sort
   if (SORT_BY === "Name")          data.sort(function(a,b){ return a[1].localeCompare(b[1]); });
   else if (SORT_BY === "Type")     data.sort(function(a,b){ return a[2].localeCompare(b[2]); });
-  else if (SORT_BY === "Last Modified") data.sort(function(a,b){ return new Date(b[4]) - new Date(a[4]); });
-  else if (SORT_BY === "Size")     data.sort(function(a,b){ return b[5] - a[5]; });
+  // Column indices must match the row pushed in collectFiles():
+  // 0=#  1=Name  2=Type  3=Link  4=Folder Path  5=Last Modified  6=Size (KB)
+  else if (SORT_BY === "Last Modified") data.sort(function(a,b){ return new Date(b[5]) - new Date(a[5]); });
+  else if (SORT_BY === "Size")     data.sort(function(a,b){ return b[6] - a[6]; });
 
   // Re-number after sort
   for (var i = 0; i < data.length; i++) data[i][0] = i + 1;
