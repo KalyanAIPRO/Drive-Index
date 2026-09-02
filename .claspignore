@@ -1,0 +1,6 @@
+// Allowlist. Without this, `clasp push` uploads EVERY .js/.json in the repo —
+// including test/harness.js, which uses require()/module and would land in the
+// Apps Script project as a broken script file.
+**/**
+!appsscript.json
+!Code.gs

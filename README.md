@@ -58,6 +58,22 @@ your own formulas on top: expected-vs-actual gap checks, ownership columns, agei
 
 ## Install
 
+### Option 0 — one command *(recommended)*
+
+Creates a **new Google Sheet with the script already bound**, runs the tests, pushes the code
+and opens it. Safe to re-run.
+
+```bash
+git clone https://github.com/KalyanAIPRO/Drive-Index.git && cd Drive-Index && clasp login && ./bootstrap.sh
+```
+
+Windows PowerShell: `.\bootstrap.ps1`
+
+> **Apps Script cannot pull from GitHub directly** — there is no "import from Git" in the
+> editor. `clasp` is the bridge, and `bootstrap` wraps it. For a genuinely one-*click*
+> experience for other people, ship a copyable Sheet template instead —
+> all four distribution routes are compared in **[`docs/DEPLOY.md`](docs/DEPLOY.md)**.
+
 ### Option A — copy/paste (no tooling)
 
 1. Create or open a Google Sheet.
@@ -79,6 +95,15 @@ clasp push --force
 ```
 
 `.clasp.json` is gitignored on purpose — a `scriptId` identifies your own Apps Script project.
+`.claspignore` restricts the push to `Code.gs` + `appsscript.json`; without it clasp would also
+upload `test/harness.js` and break the script project.
+
+### Continuous deploy
+
+`.github/workflows/deploy.yml` runs the harness on every push and PR, and pushes to Apps Script
+on `main`. It needs two repository secrets — **read the security notes in
+[`docs/DEPLOY.md`](docs/DEPLOY.md) first**, since one of them is a live OAuth token for your
+Google account.
 
 ---
 

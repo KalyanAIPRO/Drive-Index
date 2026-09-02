@@ -1,0 +1,73 @@
+name: Test & Deploy to Apps Script
+
+# Tests run on every push and PR.
+# Deploy runs only on main, and only after tests pass.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Harness (22 assertions)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node test/harness.js
+
+  deploy:
+    name: clasp push
+    needs: test
+    # Never expose secrets to a fork's pull request.
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: apps-script          # add a required reviewer here if you want a manual gate
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm install -g @google/clasp
+
+      # CLASPRC_JSON = the full contents of your local ~/.clasprc.json
+      # SCRIPT_ID    = the scriptId of the bound Apps Script project
+      # Both are repository secrets. See docs/DEPLOY.md before enabling this.
+      - name: Restore clasp credentials
+        env:
+          CLASPRC_JSON: ${{ secrets.CLASPRC_JSON }}
+        run: |
+          if [ -z "$CLASPRC_JSON" ]; then
+            echo "::error::CLASPRC_JSON secret is not set. See docs/DEPLOY.md."
+            exit 1
+          fi
+          printf '%s' "$CLASPRC_JSON" > "$HOME/.clasprc.json"
+
+      - name: Write .clasp.json
+        env:
+          SCRIPT_ID: ${{ secrets.SCRIPT_ID }}
+        run: |
+          if [ -z "$SCRIPT_ID" ]; then
+            echo "::error::SCRIPT_ID secret is not set. See docs/DEPLOY.md."
+            exit 1
+          fi
+          printf '{"scriptId":"%s","rootDir":"."}' "$SCRIPT_ID" > .clasp.json
+
+      - name: Show what will be pushed
+        run: clasp show-file-status
+
+      - name: Push
+        run: clasp push --force
+
+      # Reminder: push != deploy. A bound script's menu picks up the new code on
+      # the next Sheet reload, so no deployment step is needed here. If you later
+      # add a web app, add `clasp update-deployment` and pass a deployment id.
+      - name: Note
+        run: echo "Pushed. Reload the Sheet to pick up the new code."
